@@ -11,7 +11,7 @@ App.MoviesListView = Em.View.extend
       classNameBindings: ['isSelected:alert-error:alert-info']
       templateName: 'templates/movie_item'
       click: (e) ->
-        App.router.send('goToMovie',@.get('content.id'))
+        App.router.send('goToMovie',@get('content.id'))
         false
       isSelected: (->
         @get('content') == @get('controller.currentMovie')
