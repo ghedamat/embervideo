@@ -1,0 +1,33 @@
+h1 {
+    text-align: center;
+}
+
+header h1{
+  font-size: 70px;
+  color: #ddd;
+  margin-top: 50px;
+  margin-bottom: 50px
+}
+
+.movie_item {
+  word-wrap: break-word;
+  cursor: pointer
+}
+
+section h2{
+  text-align:center;
+  word-wrap: break-word;
+}
+.ember-view aside {
+}
+.ember-view aside input {
+  width: 100%;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  height: 30px;
+
+}
+footer p{
+  text-align: right;
+}
