@@ -14,5 +14,5 @@ App.MoviesListView = Em.View.extend
         App.router.send('goToMovie',@.get('content.id'))
         false
       isSelected: (->
-        @get('content.id') == App.router.get('moviesController.movie.id')
-      ).property('App.router.moviesController.movie.id')
+        @get('content') == @get('controller.currentMovie')
+      ).property('controller.currentMovie')
