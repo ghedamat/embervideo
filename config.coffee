@@ -20,6 +20,7 @@ exports.config =
           'vendor/scripts/ember-latest.js',
           'vendor/scripts/ember-data-latest.js',
           'vendor/scripts/bootstrap.js',
+          'vendor/scripts/jquery.inview.js',
           'vendor/scripts/jquery.fuzzymatch.js'
         ]
 
