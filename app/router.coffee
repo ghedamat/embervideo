@@ -4,6 +4,7 @@ App.Router = Em.Router.extend
   enableLogging: true
 
   root: Em.Route.extend
+    goToMovies: Em.Router.transitionTo('root.movies.index')
     goToMovie: Em.Router.transitionTo('root.movies.movie')
     index: Em.Route.extend
       route: '/'
@@ -23,6 +24,7 @@ App.Router = Em.Router.extend
         route: '/'
         connectOutlets: (router, context) ->
           router.get('moviesController').connectOutlet('movie')
+          router.set('moviesController.movie',null)
 
       movie: Em.Route.extend
         route: '/:id'
