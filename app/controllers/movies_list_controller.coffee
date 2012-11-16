@@ -4,15 +4,19 @@ App.MoviesListController = Em.ArrayController.extend
 
   currentMovieBinding: 'controllers.moviesController.movie'
 
-  setScores: (()->
-    if @get('query') == undefined
-      return @get('content')
-    else
-      co=  @get('content').forEach (data,i) =>
+  setScores: ( ->
+    unless @get('query') == undefined
+      return @forEach (data,i) =>
         score = $.fuzzyMatch(data.get('title'), @get('query')).score
         data.set('score',score)
         return data
-      return co
   ).observes('content','query')
+
+  filteredMovies: ( ->
+    if @get('query') == undefined
+      return @
+    else
+      @filter (data) -> return data.get('score') > 0
+  ).property('query','content')
 
 

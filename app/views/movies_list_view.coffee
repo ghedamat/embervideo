@@ -5,7 +5,7 @@ App.MoviesListView = Em.View.extend
       @set('controller.query',@get('value'))
     ).debounce(400)
   listView: Em.CollectionView.extend
-    contentBinding: 'controller'
+    contentBinding: 'controller.filteredMovies'
     itemViewClass: Ember.View.extend
       classNames: ['movie_item', 'alert']
       classNameBindings: ['isSelected:alert-error:alert-info']
