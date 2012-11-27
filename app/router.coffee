@@ -16,6 +16,7 @@ App.Router = Em.Router.extend
         movies = App.Movie.find({})
         router.get('applicationController').connectOutlet('movies')
         router.get('moviesController').connectOutlet('lista', 'moviesList', movies)
+        router.get('moviesListController').connectOutlet('alphabet', 'movieAlphabet')
         # router.get('moviesController').connectOutlet
         #   outletName: 'lista'
         #   name: "moviesList"

@@ -1,5 +1,12 @@
 <aside>
 <h2> Movie List </h2>
 {{view view.search}}
+<div class="row">
+<div id="movie-alphabet" class="span1">
+  {{outlet alphabet}}
+</div>
+<div {{ bindAttr class="hasMovie"}}>
 {{view view.listView}}
+</div>
+</div>
 </aside>

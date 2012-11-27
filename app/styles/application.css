@@ -38,6 +38,12 @@ footer p{
   transition: 1s ease;
 }
 
+#movie-list div{
+  -webkit-transition: 1s ease;
+  -moz-transition: 1s ease;
+  transition: 1s ease;
+}
+
 section > div{
   opacity: 0;
   -webkit-transition: 5s ease;
