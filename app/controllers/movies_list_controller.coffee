@@ -1,18 +1,12 @@
 App.MoviesListController = Em.ArrayController.extend
-  sortProperties: ['score','title']
-  sortAscending: false
-  limit: 10
-  maxLimitBinding: 'length'
+  #sortProperties: ['score']
+  #sortAscending: false
   currentLetter: 'ALL'
 
-  currentMovieBinding: 'controllers.moviesController.movie'
+  #limit: 10
+  #maxLimitBinding: 'length'
 
-  hasMovie: (->
-    if @get('currentMovie')
-      return "span3"
-    else
-      return "span11"
-  ).property('currentMovie')
+
 
   filteredMovies: ( ->
     res = @
@@ -24,12 +18,19 @@ App.MoviesListController = Em.ArrayController.extend
       res = res.filter (data,i) -> return true
       #@filter (data,i) => return (i < @get('limit'))
     else
-      @forEach (data,i) =>
+      res.forEach (data,i) =>
         score = $.fuzzyMatch(data.get('title'), @get('query')).score
         data.set('score',score)
       res = res.filter((data,i) -> return (data.get('score') > 0))
       #.filter((data,i) => return (i < @get('limit')))
     return res
-  ).property('content.isLoaded','query','limit','currentLetter')
+  ).property('content.isLoaded','query','currentLetter')
+
+
+App.FilteredMoviesController = Em.ArrayController.extend
+  sortProperties: ['score']
+  sortAscending: false
+  contentBinding: 'controllers.moviesListController.filteredMovies'
+  currentMovieBinding: 'controllers.moviesController.movie'
 
 

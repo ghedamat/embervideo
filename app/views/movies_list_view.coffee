@@ -1,9 +1,11 @@
 App.MoviesListView = Em.View.extend
   templateName: 'templates/movies_list'
+
   search: Em.TextField.extend
     keyUp: ((e) ->
       @set('controller.query',@get('value'))
     ).debounce(400)
+
   didInsertElement: ->
     $('footer').bind 'inview', (event, isInView, visiblePartX, visiblePartY) =>
       if isInView
@@ -14,8 +16,19 @@ App.MoviesListView = Em.View.extend
         @set('controller.limit', 10)
 
 
+App.FilteredMoviesView = Em.View.extend
+  templateName: 'templates/filtered_movies'
+  classNameBindings: ['hasMovie']
+
+  hasMovie: (->
+    if @get('controller.currentMovie')
+      return "span3"
+    else
+      return "span11"
+  ).property('controller.currentMovie')
+
   listView: Em.CollectionView.extend
-    contentBinding: 'controller.filteredMovies'
+    contentBinding: 'controller'
     itemViewClass: Ember.View.extend
       classNames: ['movie_item', 'alert']
       classNameBindings: ['isSelected:alert-error:alert-info']
