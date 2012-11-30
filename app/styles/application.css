@@ -9,12 +9,14 @@ header h1{
   margin-bottom: 50px
 }
 
-.movie_item, {
+.movie_item {
   word-wrap: break-word;
-  cursor: pointer
+  cursor: pointer;
+
 }
-.letter-item{
-  cursor: pointer
+
+.letter-item {
+  cursor: pointer;
 }
 
 section h2{

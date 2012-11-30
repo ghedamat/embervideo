@@ -1,3 +1,4 @@
+Ember.LOG_BINDINGS = true
 App = require('app')
 
 App.Router = Em.Router.extend

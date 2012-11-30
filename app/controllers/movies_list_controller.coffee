@@ -1,6 +1,4 @@
 App.MoviesListController = Em.ArrayController.extend
-  #sortProperties: ['score']
-  #sortAscending: false
   currentLetter: 'ALL'
 
   #limit: 10
@@ -10,8 +8,7 @@ App.MoviesListController = Em.ArrayController.extend
 
   filteredMovies: ( ->
     res = @
-    if @get('currentLetter') == 'ALL'
-    else
+    unless @get('currentLetter') == 'ALL'
       res = res.filter (data,i) =>
         (@get('currentLetter') == data.get('title')[0]) || (@get('currentLetter').toLowerCase() == data.get('title')[0])
     if @get('query') == undefined
@@ -28,9 +25,18 @@ App.MoviesListController = Em.ArrayController.extend
 
 
 App.FilteredMoviesController = Em.ArrayController.extend
-  sortProperties: ['score']
-  sortAscending: false
+  sortProperties: ['score','title']
   contentBinding: 'controllers.moviesListController.filteredMovies'
   currentMovieBinding: 'controllers.moviesController.movie'
+
+  # overriding orderBy to have sort with different orders
+  orderBy: (item1, item2) ->
+    console.log 'order'
+    result = 0
+    result = -1 * Ember.compare(item1.get('score'),item2.get('score'))
+    if result is 0
+      result = Ember.compare(item1.get('title'),item2.get('title'))
+
+    return result
 
 
