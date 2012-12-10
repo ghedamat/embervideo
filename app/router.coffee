@@ -2,17 +2,18 @@ Ember.LOG_BINDINGS = true
 App = require('app')
 
 App.Router = Em.Router.extend
+  location: 'history'
   enableLogging: true
 
   root: Em.Route.extend
     goToMovies: Em.Router.transitionTo('root.movies.index')
     goToMovie: Em.Router.transitionTo('root.movies.movie')
     index: Em.Route.extend
-      route: '/'
+      route: '/em'
       redirectsTo: 'root.movies.index'
 
     movies: Em.Route.extend
-      route: '/movies'
+      route: '/em/movies'
       connectOutlets: (router, context) ->
         movies = App.Movie.find({})
         router.get('applicationController').connectOutlet('movies')

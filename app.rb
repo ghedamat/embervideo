@@ -62,6 +62,10 @@ class EmberVideo < Sinatra::Base
   end
 
   get '/' do
+    redirect '/em'
+  end
+
+  get '/em*' do
     erb :index
   end
 
