@@ -20,16 +20,13 @@ App.MoviesListController = Em.ArrayController.extend
         data.set('score',score)
       res = res.filter((data,i) -> return (data.get('score') > 0))
       #.filter((data,i) => return (i < @get('limit')))
-    return Ember.A(res)
-  ).property('content.isLoaded','query','currentLetter')
+    @controllers.filteredMoviesController.set('content',res)
+  ).observes('@each.isLoaded','query','currentLetter')
 
 
 App.FilteredMoviesController = Em.ArrayController.extend
-  init: ->
-    console.log('init')
-    console.log @get('arrangedContent')
   sortProperties: ['score']
-  contentBinding: 'controllers.moviesListController.filteredMovies'
+  #contentBinding: 'controllers.moviesListController.filteredMovies'
   currentMovieBinding: 'controllers.moviesController.movie'
 
   # overriding orderBy to have sort with different orders
@@ -41,25 +38,5 @@ App.FilteredMoviesController = Em.ArrayController.extend
 
     return result
 
-  arrangedContent: Ember.computed('content', 'sortProperties.@each', (key, value) ->
-    content = @get('content')
-    isSorted = @get('isSorted')
-    sortProperties = @get('sortProperties')
-    self = @
-
-    if (content && isSorted)
-      content = content.slice()
-      content.sort((item1, item2) ->
-        return self.orderBy(item1, item2);
-      )
-      content.forEach( (item) ->
-        sortProperties.forEach((sortProperty) ->
-          Ember.addObserver(item, sortProperty, this, 'contentItemSortPropertyDidChange');
-        , @)
-      , @);
-      return Ember.A(content);
-
-    return content;
-  ).property().volatile(),
 
 
